@@ -15,13 +15,30 @@
 
 未來目標:
 1. 先完成假設版的釣魚信件擴充工具，並成功執行
-2. 研究background.js串接後排的部分
-3. 更深入了解chrome api
-4. 開始設計UI介面(做出草稿或流程圖)
+2. 研究background.js串接後台的部分
+4. 更深入了解chrome api
+5. 開始設計UI介面(做出草稿或流程圖)
 
 ## 【說明】
-1.了解Chrome在跟目錄中的結構
+1.了解Chrome在跟目錄中的結構(這是我簡要列出基本的架構)
 ![image](https://github.com/MocuAcqu/Chrome_test/blob/main/chrome%E5%9F%BA%E6%9C%AC%E8%B7%9F%E7%9B%AE%E9%8C%84%E6%9E%B6%E6%A7%8B.png)
+
+2.練習實作
+- c_hello
+  
+  試作如何在出現頁面呼喚擴充工具，顯示hello extensions(類似hello world)
+  
+- focus-mode
+
+  藉由擴充工具，改變網頁的CSS，有網頁內容放大集中的錯覺
+  
+- quick-api-reference
+
+  能夠快速搜尋到chrome的API
+  
+- reading-time
+
+  計算閱讀該網頁內容(article)字數，並計算對應閱讀時間
 
 
 ## 【參考資料】
