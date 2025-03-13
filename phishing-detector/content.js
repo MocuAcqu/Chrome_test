@@ -4,7 +4,6 @@ const phishingKeywords = [
     "請立即驗證", 
     "輸入您的密碼", 
     "安全警告",
-    "supabase" 
     "點擊此處確認",
   ];
   
