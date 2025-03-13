@@ -21,7 +21,7 @@
 
 ## 【說明】
 1.了解Chrome在跟目錄中的結構
-![image]()
+![image](https://github.com/MocuAcqu/Chrome_test/blob/main/chrome%E5%9F%BA%E6%9C%AC%E8%B7%9F%E7%9B%AE%E9%8C%84%E6%9E%B6%E6%A7%8B.png)
 
 
 ## 【參考資料】
