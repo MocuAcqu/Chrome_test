@@ -54,6 +54,8 @@
 目前已成功放上擴充工具，並且可以使用，只是對於是否能成功偵測可疑釣魚文件還在測試階段，現在還無法確認是否能辨識釣魚信件。
 不過對於如何架設擴充工具、修改程式碼有一定的基礎概念了!
 
+4.製作LOGO圖示
+
 
 ## 【參考資料】
 1. [Chrome Extension 開發與實作 03-官網導讀：架構總覽Architecture Overview](https://ithelp.ithome.com.tw/articles/10186334)
