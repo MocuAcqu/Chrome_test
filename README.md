@@ -8,6 +8,7 @@
 1. 我目前有跟著官方教學完成練習，練習的程式碼分別為c_hello、focus-mode、quick-api-reference、reading-time，並且了解要如何使用這些擴充工作
 2. 有開始思考需要用到的images、icons
 3. 有嘗試製作一個假設的釣魚信件擴充工具(phishing-detector)，但因為還在學習跟嘗試階段，目前只有基本模樣
+4. 製作了一個擴充工具的LOGO圖片
 
 可以討論、思考的地方:
 1. 呈現方式(自動化偵測，部會有額外的UI介面、popup視窗、右鍵選單)
