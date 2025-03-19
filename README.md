@@ -55,7 +55,8 @@
 不過對於如何架設擴充工具、修改程式碼有一定的基礎概念了!
 
 4.製作LOGO圖示
-
+| ![image](128fish_B.png) |
+|-|
 
 ## 【參考資料】
 1. [Chrome Extension 開發與實作 03-官網導讀：架構總覽Architecture Overview](https://ithelp.ithome.com.tw/articles/10186334)
