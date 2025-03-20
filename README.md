@@ -12,16 +12,27 @@
 
 ### 【3/20回報】
 1. 製作了一個擴充工具的LOGO圖片
+2. 在目前測試版中的擴充工具，可以成功的偵測關鍵字，並且在Email中做記號，但是在UI介面跑出異常數量的時候，會無法正常偵測，因此還在修改這個部分
+3. 會打算採用popup視窗，結合Email中的特殊標記，來作為呈現方法
+4. 有延伸思考要製作的功能:
+   - 想研究是否可以直接在使用擴充工具時，自動過濾掉釣魚信件，讓該信件不會不會被顯示，或是直接變成已讀狀態
+   - 想嘗試在UI視窗加一點動畫，或是增加設計
 
 可以討論、思考的地方:
+### 【3/13回報】
 1. 呈現方式(自動化偵測，部會有額外的UI介面、popup視窗、右鍵選單)
 2. UI設計(繪製還是找現有圖片、有什麼需要包含的元素)=>目前暫時傾向部分繪製、部分使用現成好理解的icon
 
+### 【3/20回報】
+
 未來目標:
+### 【3/13回報】
 1. 先完成假設版的釣魚信件擴充工具，並成功執行
 2. 研究background.js串接後台的部分
 4. 更深入了解chrome api
 5. 開始設計UI介面(做出草稿或流程圖)
+
+### 【3/20回報】
 
 ## 【說明】
 1.了解Chrome在跟目錄中的結構(這是我簡要列出基本的架構)
@@ -69,3 +80,4 @@
 4. [Google 將讓 Chrome 網址列顯示更精簡，提高使用者對釣魚網站警覺心](https://buy.line.me/u/article/173695)
 5. [針對您的業務需求的前15名Chrome擴充功能](https://www.getguru.com/zh/reference/best-chrome-extensions)
 6. [google免費icon](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:warning:FILL@0;wght@400;GRAD@0;opsz@24&icon.size=24&icon.color=%23e3e3e3)
+7. [簡單來做一個 chrome extension](https://medium.com/hybrid-maker/%E7%B0%A1%E5%96%AE%E4%BE%86%E5%81%9A%E4%B8%80%E5%80%8B-chrome-extension-2359e43f282a)
