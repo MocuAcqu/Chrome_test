@@ -6,7 +6,7 @@
       "16": "icons/128fish.png",
       "128": "icons/128fish.png"
     },
-    "permissions": ["scripting"],
+    "permissions": ["scripting", "activeTab", "tabs"],
     "host_permissions": ["https://mail.google.com/*"],
     "background": {
       "service_worker": "background.js"
