@@ -23,7 +23,7 @@
    - 想嘗試在UI視窗加一點動畫，或是增加設計
 
 ### 【3/27回報】
-1. 製作第二版本的釣魚信季偵測器([程式碼](https://github.com/MocuAcqu/Chrome_test/tree/main/fishemail2.0))
+1. 製作第二版本的釣魚信季偵測器 ([fishmail2.0](https://github.com/MocuAcqu/Chrome_test/tree/main/fishemail2.0))
    - 可以抓取到所有信件，而不會只抓取第一頁信件
    - 可以將所有信件存在關鍵字的標題、寄信人紅標
    - popup可以正確顯示異常信件數量，並會相同標題的異常信件有多少封
