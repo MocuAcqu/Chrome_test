@@ -42,6 +42,13 @@
 1. 完成測試版釣魚信件擴充工具，日他可以順利偵測釣魚信件數量
 2. 思考連接偵測系統的部分
 3. 確定回饋內容呈現方式
+
+### 【3/27回報】
+1.讓他不是一次性偵測
+2.加強popup的功能和設計(可參考:image Downloader、screencastify)
+3.想在異常信件的紅色標註旁邊有小按鍵，點開始可說明回饋跟建議
+4.與偵測模型做連接
+5.或許可以當網頁在Gmail時，釣魚偵測器可以化作一個浮動小按鍵在畫面上
    
 ## 【說明】
 1.了解Chrome在跟目錄中的結構(這是我簡要列出基本的架構)
@@ -65,7 +72,7 @@
   計算閱讀該網頁內容(article)字數，並計算對應閱讀時間
 
 3.自主練習
-- phishing-detector
+phishing-detector
   
 他是一個基本版的Chrome 擴充功能，具備以下功能：
 
@@ -82,6 +89,13 @@
 | ![image](128fish_B.png) | ![image](128fish_EX1.png) |
 |-|-|
 
+5.Fishmail 2.0
+我希望以這個2.0版本作為專題基底來延伸發展。
+
+- 3/27 重點畫面展示
+  | ![image](0327fish1.png) | ![image](0327fish2.png) | ![image](0327fish3.png)｜
+  |-|-|-|
+
 ## 【參考資料】
 1. [Chrome Extension 開發與實作 03-官網導讀：架構總覽Architecture Overview](https://ithelp.ithome.com.tw/articles/10186334)
 2. [Chrome 擴充功能](https://developer.chrome.com/docs/extensions/ai?hl=zh-tw)
@@ -90,3 +104,4 @@
 5. [針對您的業務需求的前15名Chrome擴充功能](https://www.getguru.com/zh/reference/best-chrome-extensions)
 6. [google免費icon](https://fonts.google.com/icons?selected=Material+Symbols+Outlined:warning:FILL@0;wght@400;GRAD@0;opsz@24&icon.size=24&icon.color=%23e3e3e3)
 7. [簡單來做一個 chrome extension](https://medium.com/hybrid-maker/%E7%B0%A1%E5%96%AE%E4%BE%86%E5%81%9A%E4%B8%80%E5%80%8B-chrome-extension-2359e43f282a)
+8. [Google Chrome實用小技巧](https://youtu.be/7L_32pUw5fM?si=xkKF2X3Ev-yqq4k6)
