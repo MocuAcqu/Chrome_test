@@ -71,8 +71,7 @@
 
   計算閱讀該網頁內容(article)字數，並計算對應閱讀時間
 
-3.自主練習
-phishing-detector
+3.自主練習 phishing-detector
   
 他是一個基本版的Chrome 擴充功能，具備以下功能：
 
@@ -90,10 +89,11 @@ phishing-detector
 |-|-|
 
 5.Fishmail 2.0
+
 我希望以這個2.0版本作為專題基底來延伸發展。
 
 - 3/27 重點畫面展示
-  | ![image](0327fish1.png) | ![image](0327fish2.png) | ![image](0327fish3.png)｜
+  | ![image](0327fish1.png) | ![image](0327fish2.png) | ![image](0327fish3.png) 
   |-|-|-|
 
 ## 【參考資料】
