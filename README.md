@@ -96,6 +96,17 @@
   | ![image](0327fish1.png) | ![image](0327fish2.png) | ![image](0327fish3.png) 
   |-|-|-|
 
+## 【AI model訓練相關資料】
+1. [一種用於釣魚網站驗證與偵測之方法](https://www.airitilibrary.com/Article/Detail/U0001-0208201716251600?utm_source=chatgpt.com)
+2. [以內容分析法探討軟式決策技術在網路釣魚偵測之應用](https://www.airitilibrary.com/Article/Detail/2073090X-201207-201210260025-201210260025-47-67?utm_source=chatgpt.com)
+3. [釣魚網站偵測之研究](https://www.airitilibrary.com/Article/Detail/U0002-2007202113425800?utm_source=chatgpt.com)
+4. [SpamAssassin主頁](https://spamassassin.apache.org/)
+5. [SpamAssassin 垃圾郵件篩檢程式](https://docs.plesk.com/zh-TW/obsidian/administrator-guide/%E9%83%B5%E4%BB%B6/%E9%98%B2%E5%9E%83%E5%9C%BE%E9%83%B5%E4%BB%B6%E5%B7%A5%E5%85%B7/spamassassin-%E5%9E%83%E5%9C%BE%E9%83%B5%E4%BB%B6%E7%AF%A9%E6%AA%A2%E7%A8%8B%E5%BC%8F.59432/)
+6. [如何對抗人工智慧產生的網路釣魚攻擊](https://blog.twnic.tw/2024/01/26/29474/)
+7. [Microsoft 365 中的防網路釣魚原則](https://learn.microsoft.com/zh-tw/defender-office-365/anti-phishing-policies-about)
+8. [用於檢測網路釣魚網站的智能架構](https://etheses.lib.ntust.edu.tw/thesis/detail/74580e5942096dd360df8be0eaee473f/)
+9. [網絡釣魚網頁檢測系統之模型建立](https://ielab.ie.nthu.edu.tw/110_IIE_project/3/pdf_word/110034402%E9%BB%83%E5%BD%A5%E8%93%89.pdf)
+
 ## 【參考資料】
 1. [Chrome Extension 開發與實作 03-官網導讀：架構總覽Architecture Overview](https://ithelp.ithome.com.tw/articles/10186334)
 2. [Chrome 擴充功能](https://developer.chrome.com/docs/extensions/ai?hl=zh-tw)
