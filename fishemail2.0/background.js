@@ -5,4 +5,13 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     }
 });
 
-
+/*
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.action === "resetStorage") {
+        console.log("🔄 使用者點擊開始分析，清空 suspiciousEmails");
+        chrome.storage.local.set({ suspiciousEmails: [] }, () => {
+            sendResponse({ success: true });
+        });
+        return true; // ⚠️ 告訴 Chrome 這是 async 回傳
+    }
+});*/
