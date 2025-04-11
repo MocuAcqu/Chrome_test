@@ -110,7 +110,7 @@
   |-|-|-|
 
 - 4/13 重點畫面展示
-| ![image](0413fish1.png) | ![image](0413fish2.png) | ![image](0413fish3.png) 
+| ![image](0413_fish1.png) | ![image](0413_fish2.png) | ![image](0413_fish3.png) 
   |-|-|-|
 
 ## 【AI model訓練相關資料】
