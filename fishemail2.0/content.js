@@ -1,19 +1,35 @@
 // 釣魚郵件關鍵字（比對信件標題）
-const phishingKeywords = [
+let phishingKeywords = [
     "您的帳戶已鎖定", "請立即驗證", "請參閱下方公告連結",
     "您的密碼已過期", "請點擊此連結", "緊急通知", "重要安全警告"
 ];
 
 // 可疑寄件人清單（比對寄件人 email）
-const phishingSenders = [
+let phishingSenders = [
     "jobbank@104.com.tw",
     "suspicious@example.com"
 ];
 
+let phishingUrls = [];
+let urlsLoaded = false;
+
 let maxPagesToCheck = 2; // 預設掃描頁數為 2 頁
 let currentPage = 1;     // 初始為第 1 頁
 
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+
+    if (message.action === "getPhishingUrls") {
+        fetch('http://127.0.0.1:5000/phishing-urls')
+        .then(response => response.json())
+        .then(data => {
+            //console.log("🚀 原始 API 回傳資料：", data);  // ✅ 新增這行
+            phishingUrls = data;            
+            urlsLoaded = true; // ✅ 加上這一行才不會卡住 wait
+        })
+        .catch(error => console.error('無法載入釣魚網址資料：', error));
+    }
+
     if (message.action === "scanCurrentEmail") {
         scanCurrentEmail();
         return;
@@ -22,11 +38,27 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === "scanEmails") {
         maxPagesToCheck = message.limit || 2;
         console.log("🔧 偵測頁數設定為:", maxPagesToCheck); 
+        
+        // 等待 phishingUrls 載入
+        let waitForUrls = async () => {
+            let retries = 0;
+            while (!urlsLoaded && retries < 10) {
+                console.log("⏳ 等待釣魚網址載入...");
+                await new Promise(res => setTimeout(res, 500));
+                retries++;
+            }
+            if (!urlsLoaded) {
+                console.warn("⚠️ 釣魚網址尚未載入，無法啟動分析");
+                return;
+            }
+            
+            detectPhishingEmails();
+        };
+        waitForUrls();
+        return;
+    }
 
-  
-        detectPhishingEmails()
-        return; // ✅ 這個 callback 是 async，不會呼叫 sendResponse
-    }else if (message.action === "getMaxPages") {
+    else if (message.action === "getMaxPages") {
         try {
             let amountElements = document.querySelectorAll("span.Dj span.ts");
             if (!amountElements.length) {
@@ -73,15 +105,12 @@ async function detectPhishingEmails() {
         console.log("⚠️ 獲取信件總數失敗，請確認 Gmail 介面是否變更！");
         return;
     }
-    //console.log(`📨 信箱總數量: ${totalEmails} 封，將偵測最多 ${maxEmailsToCheck/50} 頁`);
-    
-    //let suspiciousEmails = [];
     
     let emailsOnCurrentPage = 0; // 追蹤當前頁面檢查的信件數量
 
     // 針對當前頁面，檢查所有郵件（包含主旨與寄件人）
     async function checkEmailsOnPage() {
-        
+
         const emailRows = document.querySelectorAll("tr.zA");
         //console.log(`🔍 當前頁面找到 ${emailRows.length} 封郵件，開始檢查...`);
         console.log(`🔍 第 ${currentPage} 頁找到 ${emailRows.length} 封郵件，開始檢查...`);
@@ -96,12 +125,19 @@ async function detectPhishingEmails() {
             let senderEmail = senderSpan.getAttribute("email") || "未知寄件人";
     
             console.log("📩 信件標題:", title, "| 寄件人:", senderEmail);
-    
+            // 假設 response 是你從 API 拿到的 phishing URL CSV 陣列（已經轉為陣列）
+            
+
             // 判斷是否可疑
             let subjectSuspicious = phishingKeywords.some(keyword => title.includes(keyword));
             let senderSuspicious = phishingSenders.some(suspicious => senderEmail.toLowerCase().includes(suspicious.toLowerCase()));
-    
-            if (subjectSuspicious || senderSuspicious) {
+            let urlSuspicious = phishingUrls.some(url => title.includes(url));
+            //phishingDomains = phishingDomains.map(url => url.replace(/^https?:\/\//, ""));
+            console.log("🔎 ", phishingUrls);
+            console.log("🔎 是否有釣魚網址？", urlSuspicious);
+            
+
+            if (subjectSuspicious || senderSuspicious || urlSuspicious) {
                 // 註記整行信件樣式
                 row.style.color = "red";
                 row.style.fontWeight = "bold";
@@ -115,35 +151,6 @@ async function detectPhishingEmails() {
             }
             checkedEmails++; // 增加已檢查的信件數
         });
-        /*
-        for (let row of emailRows) {
-            const titleSpan = row.querySelector("span.bog");
-            const senderSpan = row.querySelector("span.zF") || row.querySelector("span.yP");
-    
-            if (!titleSpan || !senderSpan) continue;
-    
-            let title = titleSpan.textContent.trim();
-            let senderEmail = senderSpan.getAttribute("email") || "未知寄件人";
-    
-            console.log("📩 檢查信件:", title, "|", senderEmail);
-    
-            // 檢查主旨或寄件人是否可疑
-            let subjectSuspicious = phishingKeywords.some(keyword => title.includes(keyword));
-            let senderSuspicious = phishingSenders.some(s => senderEmail.toLowerCase().includes(s.toLowerCase()));
-    
-            if (subjectSuspicious || senderSuspicious) {
-                row.style.color = "red";
-                row.style.fontWeight = "bold";
-                row.insertAdjacentHTML("beforeend", " ⚠️");
-    
-                suspiciousEmails.push({ title, sender: senderEmail });
-            }
-    
-            // ⬇️ 這行會點進信件看內文（額外判斷）
-            await scanEmailContent(row, title, senderEmail);
-    
-            checkedEmails++;
-        }*/
     }
 
     // 判斷是否存在「下一頁」按鈕
@@ -286,12 +293,20 @@ async function scanCurrentEmail() {
         problems: []
     };
 
+    const phishingDomains = phishingUrls.map(url => {
+        try {
+            return new URL(url).hostname;
+        } catch (e) {
+            return null;
+        }
+    }).filter(Boolean);
+    
     // 取得標題、寄件人
     const titleElement = document.querySelector("h2.hP");
     const senderElement = document.querySelector("span.gD");
 
     if (!titleElement || !senderElement) {
-        console.warn("❗ 無法取得標題或寄件人，請確認是否點入單封信");
+        console.warn("❗ 無法取得標題或寄件人，請確認是否點入單封信建中");
         chrome.storage.local.set({ singleEmailResult: { error: "無法取得信件資訊" } });
         return;
     }
@@ -299,7 +314,7 @@ async function scanCurrentEmail() {
     suspicious.title = titleElement.textContent.trim();
     suspicious.sender = senderElement.getAttribute("email") || "未知寄件人";
 
-    // 檢查標題與寄件人
+    // 檢查標題與寄件人、釣魚網址
     if (phishingKeywords.some(k => suspicious.title.includes(k))) {
         suspicious.problems.push("標題含可疑關鍵字");
     }
@@ -307,14 +322,56 @@ async function scanCurrentEmail() {
         suspicious.problems.push("寄件人為可疑來源");
     }
 
+    
+    if (phishingUrls.some(url => suspicious.title.includes(url))) {
+        suspicious.problems.push("標題含釣魚網址");
+    }
+    
+
     // 檢查內文
     const contentElement = document.querySelector("div.a3s");
+
     if (contentElement) {
-        suspicious.preview = contentElement.innerText.slice(0, 200);
+    suspicious.preview = contentElement.innerText.slice(0, 200);
+
+        // 可疑關鍵字檢查
         if (phishingKeywords.some(k => suspicious.preview.includes(k))) {
             suspicious.problems.push("信件內容含可疑字詞");
         }
+
+        if (phishingUrls.some(url => suspicious.preview.includes(url))) {
+            suspicious.problems.push("信件內容含釣魚網址");
+        }
+
+        // ✅ 這裡才可以使用 contentElement
+        const linkElements = contentElement.querySelectorAll("a[href]");
+        for (let link of linkElements) {
+            let href = link.getAttribute("href");
+        
+            try {
+                // 處理 Gmail 包裝的網址（像是 https://www.google.com/url?q=https://phishy-site.com&...）
+                const url = new URL(href);
+                if (url.hostname === "www.google.com" && url.searchParams.has("q")) {
+                    href = url.searchParams.get("q"); // 抽出原始網址
+                }
+            } catch (e) {
+                continue;
+            }
+        
+            try {
+                const domain = new URL(href).hostname;
+                if (phishingDomains.some(phishDomain => domain.includes(phishDomain))) {
+                    suspicious.problems.push("內文含可疑連結：" + href);
+                    break;
+                }
+            } catch (e) {
+                // 非法 URL 不處理
+                continue;
+            }
+        }
+        
     }
+
 
     // 檢查附件
     const attachments = document.querySelectorAll("div.aQH span.aZo");
@@ -325,3 +382,4 @@ async function scanCurrentEmail() {
 
     chrome.storage.local.set({ singleEmailResult: suspicious });
 }
+

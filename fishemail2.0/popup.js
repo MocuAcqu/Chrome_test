@@ -36,12 +36,16 @@ document.addEventListener("DOMContentLoaded", function () {
     
     // 點擊開始分析按鈕
     scanButton.addEventListener("click", () => {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            chrome.tabs.sendMessage(tabs[0].id, { action: "getPhishingUrls" });
+        });
         
 
 
         const mode = modeSelector.value;
 
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            
             if (mode === "batch") {
 
                 const limit = parseInt(document.getElementById("pagesToScan").value) || 2;
@@ -125,3 +129,4 @@ function updatePopupData() {
     });
 
 }
+
