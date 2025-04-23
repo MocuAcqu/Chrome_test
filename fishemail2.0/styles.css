@@ -1,6 +1,6 @@
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #f4f6f8;
+    background-color: #3e3e3e;
     margin: 0;
     padding: 0;
     width: 350px;
@@ -50,6 +50,9 @@ select, input[type="number"] {
     box-sizing: border-box;
 }
 
+
+
+
 button {
     width: 100%;
     background-color: #e74c3c;
@@ -67,6 +70,7 @@ button {
 button:hover {
     background-color: #c0392b;
 }
+
 
 ul {
     list-style-type: none;
@@ -121,3 +125,7 @@ li {
 @keyframes spin {
     to { transform: translate(-50%, -50%) rotate(360deg); }
 }
+
+
+
+

@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         chrome.tabs.sendMessage(tabs[0].id, { action: "getMaxPages" }, (response) => {
             if (chrome.runtime.lastError) {
-                console.error("❌ 無法取得最大頁數:", chrome.runtime.lastError.message);
+                //console.error("❌ 無法取得最大頁數:", chrome.runtime.lastError.message);
                 return;
             }
             if (response && response.success) {
@@ -38,14 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
     scanButton.addEventListener("click", () => {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             chrome.tabs.sendMessage(tabs[0].id, { action: "getPhishingUrls" });
-        });
-        
 
-
-        const mode = modeSelector.value;
-
-        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-            
             if (mode === "batch") {
 
                 const limit = parseInt(document.getElementById("pagesToScan").value) || 2;
@@ -57,6 +50,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 chrome.tabs.sendMessage(tabs[0].id, { action: "scanCurrentEmail" });
             }
         });
+        
+
+
+        const mode = modeSelector.value;
+
+
     });
     
     // 顯示批次結果
@@ -83,13 +82,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     });
-    /*
-    // 當 chrome.storage.local 變更時更新
-    chrome.storage.onChanged.addListener((changes, areaName) => {
-        if (areaName === "local" && changes.suspiciousEmails) {
-            updatePopupData();
-        }
-    });*/
 });
 
 function updatePopupData() {

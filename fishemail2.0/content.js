@@ -31,12 +31,20 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     }
 
     if (message.action === "scanCurrentEmail") {
-        scanCurrentEmail();
-        return;
+        // 當用戶按下「開始分析」按鈕時：
+        chrome.storage.local.remove("singleEmailResult", () => {
+            // 然後才開始分析
+            scanCurrentEmail();
+            return;
+        });
+
+        //canCurrentEmail();
+        //return;
     }    
     
     if (message.action === "scanEmails") {
         maxPagesToCheck = message.limit || 2;
+        currentPage = 1; 
         console.log("🔧 偵測頁數設定為:", maxPagesToCheck); 
         
         // 等待 phishingUrls 載入
@@ -248,7 +256,7 @@ function displaySuspiciousEmails(suspiciousEmails) {
     }); 
 }
 
-async function scanEmailContent(row, title, senderEmail) {
+/*async function scanEmailContent(row, title, senderEmail) {
     row.click(); // 點進信件
     console.log("📬 已點開信件:", title);
 
@@ -282,7 +290,7 @@ async function scanEmailContent(row, title, senderEmail) {
     }
 
     await new Promise(resolve => setTimeout(resolve, 1000)); // 等返回完成
-}
+}*/
 
 async function scanCurrentEmail() {
     let suspicious = {
@@ -332,7 +340,7 @@ async function scanCurrentEmail() {
     const contentElement = document.querySelector("div.a3s");
 
     if (contentElement) {
-    suspicious.preview = contentElement.innerText.slice(0, 200);
+    suspicious.preview = contentElement.innerText.slice(0, 300);
 
         // 可疑關鍵字檢查
         if (phishingKeywords.some(k => suspicious.preview.includes(k))) {
@@ -382,4 +390,3 @@ async function scanCurrentEmail() {
 
     chrome.storage.local.set({ singleEmailResult: suspicious });
 }
-

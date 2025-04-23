@@ -5,23 +5,6 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     }
 });
 
-/*
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.action === "getPhishingUrls") {
-        fetch(chrome.runtime.getURL("assets/phishing_urls.csv"))
-            .then(res => res.text())
-            .then(data => {
-                const urls = data.split('\n').map(line => line.trim()).filter(Boolean);
-                sendResponse({ success: true, urls });
-            })
-            .catch(error => {
-                console.error("無法載入 CSV:", error);
-                sendResponse({ success: false });
-            });
-        return true; // 這個很重要
-    }
-});*/
-
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === "getPhishingUrls") {
         console.log("📡 收到 getPhishingUrls，開始從 Flask API 載入網址");
@@ -37,3 +20,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             });
     }
 });
+
+
+  
